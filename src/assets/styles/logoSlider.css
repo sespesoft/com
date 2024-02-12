@@ -1,0 +1,29 @@
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(calc(-240px * 7));
+    }
+}
+
+.swiper-logo {
+    white-space: nowrap;
+    overflow: hidden;
+    list-style: none;
+}
+
+.swiper-logo:hover .swiper-wrapper-logo {
+    animation-play-state: paused;
+}
+
+.swiper-slide-logo {
+    display: inline-block;
+}
+
+.swiper-wrapper-logo {
+    display: inline-block;
+    animation: 35s slide infinite linear;
+    width: calc(240px * 14);
+}

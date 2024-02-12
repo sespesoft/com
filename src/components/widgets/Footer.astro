@@ -1,0 +1,89 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getHomePermalink } from '~/utils/permalinks';
+
+interface Link {
+  text?: string;
+  text2?: string;
+  href?: string;
+  ariaLabel?: string;
+  icon?: string;
+}
+
+interface Links {
+  title?: string;
+  links: Array<Link>;
+  socialLinks: Array<Link>;
+}
+
+export interface Props {
+  links: Array<Links>;
+  footNote?: string;
+  theme?: string;
+}
+
+const {links = [], footNote = '', theme = 'light' } = Astro.props;
+---
+
+<footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-200 dark:border-slate-800 not-prose']}>
+  <div class="dark:bg-dark absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 dark:text-slate-300">
+    <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
+      <div class="col-span-12 lg:col-span-3">
+        <div class="mb-2">
+          <a class="inline-block font-bold text-xl" href={getHomePermalink()}><img src="../../../src/assets/images/logo.png" alt="" style="width: 70%;"></a>
+        </div>
+      </div>
+      {
+        links.map(({ title, links, socialLinks }) => (
+          <div class="col-span-12 md:col-span-3 lg:col-span-3">
+            <div class="dark:text-gray-300 font-bold mb-2">{title}</div>
+            {links && Array.isArray(links) && links.length > 0 && (
+              <ul class="text-sm">
+                {links.map(({ text, href, text2, ariaLabel }) => (
+                  <li class="mb-4">
+                    <p class="text-muted dark:text-gray-400"><Fragment set:html={text2}/></p>
+                    <a
+                      class="text-muted hover:text-[rgb(255,135,0)] hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
+                      href={href}
+                      aria-label={ariaLabel}
+                    >
+                      <Fragment set:html={text} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+            <div class="md:flex md:items-center md:justify-between">
+            {socialLinks?.length ? (
+              <ul class="flex mb-4 md:order-1 md:mb-0 rtl:ml-0 rtl:-mr-2 rtl:md:ml-0 rtl:md:mr-4 mr-10">
+                {socialLinks.map(({ ariaLabel, href, text, icon }) => (
+                  <li class="mr-2 inline-block">
+                    <a
+                      class="text-muted dark:text-gray-400 hover:border-[rgb(255,135,0)] hover:text-[rgb(255,135,0)] focus:outline-none dark:focus:ring-gray-700 rounded-[9999px] border border-[rgb(222,226,230)] text-sm p-2.5 inline-flex items-center"
+                      aria-label={ariaLabel}
+                      href={href}
+                      target="_blank"
+                    >
+                      {icon && <Icon name={icon} class="w-5 h-5" />}
+                      <Fragment set:html={text} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              ''
+            )}
+        </div>
+      </div>
+        ))
+      }
+    
+    </div>
+    <div class="flex items-center border-t border-[rgb(222 226 230] justify-center py-6 md:py-8">
+      <div class="text-sm mr-4 text-muted dark:text-slate-400">
+        <Fragment set:html={footNote} />
+      </div>
+    </div>
+  </div>
+</footer>

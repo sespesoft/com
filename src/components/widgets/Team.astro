@@ -1,0 +1,70 @@
+---
+import type { Team } from '~/types';
+import WidgetWrapper from '../ui/WidgetWrapper.astro';
+import Headline from '../ui/Headline.astro';
+import '../../assets/styles/teamSlider.css'
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline,
+  team = [],
+
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props as Team;
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <Headline title={title} subtitle={subtitle} tagline={tagline} />
+  <div class="row flex flex-wrap justify-center items-center">
+
+    <div class="row2 sm:col-span-10 md:col-span-8 lg:col-span-5 xl:col-span-4">
+      <div class="relative z-30 overflow-hidden">
+        <div class="swiper swiper-initialized touch-pan-y">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide sm:w-[480px] w-[358px]">
+              {
+                team.map((data)=>(
+                <div class="testimonial-content cursor-pointer px-8 py-16 text-center text-white">
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z"></path>
+                  </svg>
+                  <p class="sm:text-sm mb-4 mt-6 leading-[1.75]">{data.content}</p>
+                  <span class="author mt-4">
+                    <img src={data.avatar} alt="slider" style="border-radius: 50%;" width="91px" height="91px"/>
+                    <h3 class="name text-sm">{data.name}</h3>
+                    <p class="text-xs text-[rgb(206,206,208)]">{data.position}</p>
+                  </span>
+                </div>
+                ))
+              }
+            </div>
+           
+              <div class="pagination absolute -translate-y-10 top-[43rem] md:top-[35rem] swiper-pagination-bullets-dynamic">
+                {
+                  team.map((data) =>(
+                  <span class={`swiper-pagination-bullet m-[.3rem] bg-[#000] dark:bg-white opacity-20 rounded-[50%] cursor-pointer ${data?.active && 'active'}`}></span>
+                  ))
+                }        
+              </div>
+              <div class="buttons">
+                <button id="prev"></button>
+                <button id="next"></button>
+            </div>
+          </div>
+        </div>
+        <svg class="absolute left-1/2 top-0 -z-10 h-full w-auto -translate-x-1/2 text-[rgb(255,135,0)] sm:left-0 sm:h-auto sm:w-full sm:translate-x-0" viewBox="0 0 462 458" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M36.9901 53.2939C8.66553 90.8729-.680565 197.569.0380893 247.72 3.02596 456.228 136.937 460.573 283.124 457.125 406.681 454.211 459.969 401.82 461.426 261.777 462.591 149.742 432.9 78.8779 413.134 60.3019 326.242-21.359 89.5954-16.4987 36.9901 53.2939z" fill="currentcolor"></path>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+</WidgetWrapper>
+
+<script>
+  import "../../js/team.js";
+</script>

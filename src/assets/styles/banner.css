@@ -1,0 +1,156 @@
+body {
+  --nav-load-time: 200ms;
+  --image-load-time: 300ms;
+}
+
+.title {
+  animation: article-load 400ms ease;
+  animation-fill-mode: forwards;
+  transform: translateY(100px);
+  opacity: 0;
+}
+
+.subtitle{
+  animation: article-load 400ms ease var(--nav-load-time);
+  animation-fill-mode: forwards;
+  transform: translateY(100px);
+  opacity: 0;
+}
+
+.box {
+  animation: article-load 400ms ease var(--nav-load-time);
+  animation-fill-mode: forwards;
+  transform: translateY(100px);
+  opacity: 0;
+}
+
+.image {
+  animation: article-load 400ms ease var(--image-load-time);
+  animation-fill-mode: forwards;
+  transform: translateY(100px);
+  opacity: 0;
+}
+
+.titulo {
+  animation: rotate-appear 0.5s ease-out forwards;
+  animation-timeline: scroll();
+  animation-range: 0px 400px;
+}
+
+.circle1, .circle5, .circle6 {
+  animation: rotate-circle1 0.5s ease-out forwards;
+  animation-timeline: scroll();
+  animation-range: 0px 400px;
+}
+
+.circle2, .circle3 {
+  animation: rotate-circle2 0.5s ease-out forwards;
+  animation-timeline: scroll();
+  animation-range: 0px 400px;
+}
+
+.circle4 {
+  animation: rotate-circle4 0.5s ease-out forwards;
+  animation-timeline: scroll();
+  animation-range: 0px 400px;
+}
+
+.circle7 {
+  animation: rotate-circle7 0.5s ease-out forwards;
+  animation-timeline: scroll();
+  animation-range: 0px 400px;
+}
+
+.circle8 {
+  animation: rotate-circle8 0.5s ease-out forwards;
+  animation-timeline: scroll();
+  animation-range: 0px 400px;
+}
+
+.circle9 {
+  animation: rotate-circle9 0.5s ease-out forwards;
+  animation-timeline: scroll();
+  animation-range: 0px 400px;
+}
+
+@keyframes rotate-circle1 {
+  from {
+    transform: translateY(0px);
+  }
+
+  to {
+    transform: translateY(100px);
+  }
+}
+
+@keyframes rotate-circle2 {
+  from {
+    transform: translateY(0px);
+  }
+
+  to {
+    transform: translateY(-50px);
+  }
+}
+
+@keyframes rotate-circle4 {
+  from {
+    transform: translateY(0px);
+  }
+
+  to {
+    transform: translateY(90px);
+  }
+}
+
+@keyframes rotate-circle7 {
+  from {
+    transform: translateY(0px);
+  }
+
+  to {
+    transform: translateY(50px);
+  }
+}
+
+@keyframes rotate-circle8 {
+  from {
+    transform: translateY(0px);
+  }
+
+  to {
+    transform: translateY(-30px);
+  }
+}
+
+@keyframes rotate-circle9 {
+  from {
+    transform: translateY(0px);
+  }
+
+  to {
+    transform: translateY(180px);
+  }
+}
+
+@keyframes rotate-appear {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(55%);
+  }
+}
+
+@keyframes article-load {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}

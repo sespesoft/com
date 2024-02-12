@@ -1,0 +1,360 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Content from '~/components/widgets/Content.astro';
+import Team from '~/components/widgets/Team.astro';
+import Brands from '~/components/widgets/Brands.astro';
+import ContactUs from '~/components/widgets/Contact.astro';
+
+const metadata = {
+  title: 'Sespesoft » Servicios Especializados en Software',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Contáctanos',
+        href: '#contacto',
+      },
+      //{ text: 'Learn more', href: '#features' },
+    ]}
+    image={{ src: '~/assets/images/banner.webp', alt: 'AstroWind Hero Image' }}
+  >
+    <Fragment slot="title">Servicios Especializados en Software</Fragment>
+
+    <Fragment slot="subtitle">
+      Escala tu negocio a otro nivel, aumenta la productividad y disminuye los costos con mayor eficacia. Realiza más
+      tareas en menos tiempo y con menos esfuerzo.
+    </Fragment>
+  </Hero>
+
+  <!-- Features Widget *************** -->
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isAfterContent
+    id="productos"
+    callToAction={{
+      text: 'Prueba',
+      href: 'http://weps.sespesoft.com/',
+      target: '_blank',
+    }}
+    image={{
+      src: '~/assets/images/weps.webp',
+      alt: 'Weps Image',
+    }}
+    testimonials={[
+      {
+        testimonial: `El éxito de una empresa va ligada con el entusiasmo por la innovación y automatización de sus procesos, esto es precisamente lo que Gestión wEPS ofrece.`,
+        name: 'Mauricio A.',
+        job: 'Co-Founder, Sespesoft S.A.',
+        image: {
+          src: '~/assets/images/person_1.jpg',
+          alt: 'Mauricio Image',
+        },
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl">Gestión wEPS</h3>
+      <h3 class="text-lg font-bold tracking-tight text-black dark:text-white sm:text-xl mb-2">Control Inteligente de la Salud</h3>
+      Nuestra SUITE Gestión Weps utiliza algoritmos avanzados y enfocados a la administración de la salud, da cumplimiento
+      a la normatividad vigente. Nuestras tecnologías modernas proponen un modelo de prevención y anticipo a los eventos
+      en salud con proyecciones reales en cada ciclo de vida de las personas.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isReversed
+    callToAction={{
+      text: 'Prueba',
+      href: 'http://weps.sespesoft.com/aisalud',
+      target: '_blank',
+    }}
+    image={{
+      src: '~/assets/images/aisalud.webp',
+      alt: 'Aisalud Image',
+    }}
+    testimonials={[
+      {
+        testimonial: `No solo es un validador de RIPS que cumple con la resolución 3374, si no una experiencia completa de radicación de cuentas medicas.`,
+        name: 'Marlon R.',
+        job: 'Co-Founder, Sespesoft S.A.',
+        image: {
+          src: '~/assets/images/person_2.jpg',
+          alt: 'Marlon Image',
+        },
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl">AISalud</h3>
+      <h3 class="text-lg font-bold tracking-tight text-black dark:text-white sm:text-xl mb-2">Eficacia en la Facturación Médica</h3>
+      Valide los RIPS de conformidad con las reglas de negocio establecidas en los contratos de prestación. Clasifique y
+      radique las facturas, adjunte sus soportes digitales, genere glosas automáticas, gestione las glosas por diferentes
+      conceptos, administre los tiempos de entrega. Gestione las respuestas a las glosas y genere actas de conciliación.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <Content
+    isAfterContent
+    callToAction={{
+      text: 'Prueba',
+      href: 'https://concurrencia.caresoft.com.co',
+      target: '_blank',
+    }}
+    image={{
+      src: '~/assets/images/auditorias.webp',
+      alt: 'Auditorias Image',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl">Auditorías Integrales</h3>
+      <h3 class="text-lg font-bold tracking-tight text-black dark:text-white sm:text-xl mb-2">Optimizando procesos, impulsando resultados</h3>
+      Diagrame el flujo de los procesos teniendo en cuenta la dinámica de la empresa entre sus procesos misionales, gerenciales
+      o de apoyo. Registre y cree los diferentes indicadores teniendo en cuenta el mapa de procesos. Los indicadores pueden
+      ser de Gestión o de calidad, siempre deben obedecer al seguimiento de un subproceso dentro de la organización. Planee
+      y organice las diferentes actividades, realice y calcule los indicadores, genere de forma automática calificaciones,
+      ajuste los valores, vincule encuestas dinámicas.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    id="servicios"
+    title="Servicios"
+    items={[
+      {
+        title: 'Desarrollo Web',
+        description:
+          'Brindamos soluciones que integran el ciclo de vida de un desarrollo a la medida con altos estandares de calidad y cumplimiento, usamos metodologías y tecnologías de vanguardia.',
+        icon: 'tabler:code',
+      },
+      {
+        title: 'Consultoría',
+        description:
+          'Nuestra amplia experiencia en el sector tecnológico nos permite asesorarle en temas como desarrollo web, cloud computing, escalabilidad, usabilidad, gestión y manejo de proyectos informaticos.',
+        icon: 'tabler:question-mark',
+      },
+      {
+        title: 'Business Intelligence',
+        description:
+          'Mediante el uso de herramientas de analísis nos encargamos de transformar información en conocimiento, con el fin de mejorar el proceso de toma de deciones a nivel gerencial.',
+        icon: 'tabler:trending-up',
+      },
+      {
+        title: 'Capacitación',
+        description:
+          'El conocimiento debe ser transferido es por esta razón que dentro del paquete empresarial se incluye la capacitación de usuarios del sistema.',
+        icon: 'tabler:user-filled',
+      },
+      {
+        title: 'Aplicaciones Móviles',
+        description:
+          'Una aplicación movil inicia con una idea, nosotros nos encargamos de garantizar que esa idea sea un éxito con desarrollo nativo, hibrido o bridged.',
+        icon: 'tabler:device-mobile',
+      },
+      {
+        title: 'Marketing',
+        description:
+          'La presentacion personal es tan importante tanto fisica como web por eso le ofrecemos a nuestros clientes la oportunidad de dar a conocer sus productos y servicios.',
+        icon: 'tabler:currency-dollar',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+
+  <!-- Steps Widget ****************** -->
+
+  <Steps
+    id="nosotros"
+    title="Sobre Nosotros"
+    items={[
+      {
+        title: 'Misión',
+        description:
+          'SESPESOFT es una empresa dedicada a la consultoría, desarrollo y comercialización de sistemas de información con procesos tecnológicos de alta calidad, comprometida con sus clientes y proveedores, destacando su liderazgo en la promoción de la conciencia ambiental. Para ello cuenta con un talento humano idóneo y comprometido, generando un impacto de calidad en el servicio con balance social.',
+      },
+      {
+        title: 'Visión',
+        description:
+          'En el 2030 SESPESOFT liderará el sector TECNOLÓGICO como empresa transformadora de procesos, aprovechando el reconocimiento de la comunidad, para aumentar nuestra presencia en el mercado. Nuestro modelo de gestión innovador nos permitirá evolucionar la fuerza competitiva.',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/equipo.webp',
+      alt: 'Equipo image',
+    }}
+  />
+
+  <!-- Stats Widget ****************** -->
+
+  <Team
+    title="Equipo de Trabajo"
+    team={[
+      {
+        name: 'Mauricio Acevedo',
+        content:
+          'Consultor Tecnologias de Información, Magister Gestión de Proyectos Informáticos, Especialista Diagnóstico y Analisis Organizacional, Administrador de Empresas y Finanzas con mas de 20 años de experiencia laborando en el area de la salud.',
+        avatar: '../../src/assets/images/mauricio.webp',
+        position: 'Co-Founder, Sespesoft S.A.',
+        active: true,
+      },
+      {
+        name: 'Marlon Ramirez',
+        content:
+          'Ingeniero de sistemas con énfasis en desarrollo de software aplicado a entornos web, amplio conocimiento en arquitectura de software, metodologías agiles, diseño y despliegue de soluciones.',
+        avatar: '../../src/assets/images/person_2.jpg',
+        position: 'Co-Founder, Sespesoft S.A.',
+      },
+      {
+        name: 'Carlos Duque',
+        content:
+          'Contador público, técnico profesional en Administración de servicios financieros; 6 años en atención y servicio al cliente en temas relacionados con programas comerciales y análisis financiero. Profesional con competencias y manejo de metodología Lean y metodología Scrum.',
+        avatar: '../../src/assets/images/carlos.webp',
+        position: 'Contador',
+      },
+      {
+        name: 'Angie Quintero',
+        content:
+          'Ingeniera de Sistemas, especialista en Gestión de TICs, con experiencia en el Área de Implementación, cuento con capacidades para resolver problemas, habilidades de comunicación y trabajo en equipo.',
+        avatar: '../../src/assets/images/angie.webp',
+        position: 'Ingeniera de Sistemas',
+      },
+      {
+        name: 'Rocky Barrios',
+        content:
+          'Estudiante de Ingeniería de Sistemas. Desarrollador dedicado a Backend, apasionado por el aprendizaje continuo y las buenas prácticas, contribuyendo en el desarrollo de soluciones innovadoras y eficientes en el área de desarrollo web.',
+        avatar: '../../src/assets/images/rocky.webp',
+        position: 'Desarrollador Backend',
+      },
+      {
+        name: 'Noheli Villa',
+        content:
+          'Estudiante de Ingeniería de Sistemas, enfocada al desarrollo de Frontend, con conociminetos en la construcción de sitios web estáticos y la implementación de diseños responsivos, con habilidades analíticas orientada a los detalles.',
+        avatar: '../../src/assets/images/noheli.webp',
+        position: 'Desarrolladora Frontend',
+      },
+      {
+        name: 'Yefferson Peinado',
+        content:
+          'Autodidacta, estudiante de Ingeniería de Sistemas, dedicado al desarrollo web con proyección Frontend. Formando mi propio camino para lograr las metas que me propongo.',
+        avatar: '../../src/assets/images/yeferson.webp',
+        position: 'Desarrollador Backend',
+      },
+      {
+        name: 'Maria Sepulveda',
+        content:
+          'Ingeniera de Sistemas especializada en análisis y pruebas, con habilidades para desglosar sistemas complejos en componentes manejables, identificar posibles fallos y diseñar estrategias efectivas de prueba.',
+        avatar: '../../src/assets/images/mafe.webp',
+        position: 'Ingeniera de Sistemas',
+      },
+      {
+        name: 'Madelen Agudelo',
+        content:
+          'Lorem ipsum dolor amet, conseetur adipiscing elit. Ornare quam porta arcu congue felis volutpat. Vitae lectudbfs pellentesque vitae dolor',
+        avatar: '../../src/assets/images/madelen.webp',
+        position: 'CEO, Nexuspay',
+      },
+    ]}
+  />
+
+  <!-- Brands Widget ****************** -->
+
+  <Brands 
+    title="Nuestros Clientes" 
+    images={[
+      {
+        src: '../../src/assets/images/01-logo.png',
+        alt: 'confanorte',
+      },
+      {
+        src: '../../src/assets/images/logo_omnicon.png',
+        alt: 'omnicon',
+      },
+      {
+        src: '../../src/assets/images/logo_cosmitet.png',
+        alt: 'cosmitet',
+      },
+      {
+        src: '../../src/assets/images/logo_unimap.png',
+        alt: 'unimap',
+      },
+      {
+        src: '../../src/assets/images/logo_famac.png',
+        alt: 'famac',
+      },
+      {
+        src: '../../src/assets/images/logo_tools.png',
+        alt: 'tools',
+      },
+      {
+        src: '../../src/assets/images/logo_duarte.png',
+        alt: 'duarte',
+      },
+    ]}
+  
+  />
+  <!-- Note Widget ******************* -->
+
+  <ContactUs
+    id="contacto"
+    title="Cuentanos tus ideas"
+    inputs={[
+      {
+        type: 'text',
+        name: 'name',
+        label: 'Nombre',
+        placeholder: 'Nombre',
+      },
+      {
+        type: 'email',
+        name: 'email',
+        label: 'Email',
+        placeholder: 'Email',
+      },
+      {
+        type: 'text',
+        name: 'name',
+        label: 'Objeto',
+        placeholder: 'Objeto',
+      },
+    ]}
+    textarea={{
+      label: 'Mensaje',
+      placeholder: 'Dejanos un Mensaje...',
+    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-gray-100 dark:bg-transparent"></div>
+    </Fragment>
+  </ContactUs>
+  <!-- HighlightedPosts Widget ******* -->
+</Layout>
