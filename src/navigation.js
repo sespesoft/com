@@ -30,7 +30,7 @@ export const footerData = {
     {
       title: 'Socials',
       links: [
-        { text: 'sespesoft@gmail.com', href: '#' },
+        { text: 'info@sespesoft.com', href: 'mailto:info@sespesoft.com' },
       ],
       socialLinks: [
         { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://twitter.com/sespesoft' },
