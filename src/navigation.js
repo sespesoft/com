@@ -49,17 +49,7 @@ export const footerData = {
       ],
       socialLinks: [
       ],
-    },
-    {
-      title: 'Location & Contact',
-      links: [
-        { text2: 'San Jose de Cúcuta - Norte de Santander'},
-        { text2: 'Calle 5 #0-14 Barrio LLeras '},
-        { text2: 'Cel. 3174309332'},
-      ],
-      socialLinks: [
-      ],
-    },
+    }, 
   ],
   footNote: `
    SESPESOFT S.A.S. ©2024

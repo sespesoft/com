@@ -6,7 +6,7 @@ import Image from '~/components/common/Image.astro';
 import Button from '~/components/ui/Button.astro';
 import ItemGrid from '../ui/ItemGrid.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
-import '../../assets/styles/content.css'
+import '~/assets/styles/content.css'
 
 const {
   title = await Astro.slots.render('title'),
@@ -44,7 +44,7 @@ const {
       subtitle: 'max-w-3xl mx-auto sm:text-center text-xl text-muted dark:text-slate-400',
     }}
   />
-  <div class="max-w-7xl p-4 md:px-20">
+  <div class="mx-auto max-w-7xl p-4 md:px-16">
     <div class={`md:flex ${isReversed ? 'md:flex-row-reverse' : ''} md:gap-16`}>
       <div class="content md:basis-1/2 self-center">
         {content && <div class="mb-6 text-sm text-[#666666] dark:text-slate-300" set:html={content} />}

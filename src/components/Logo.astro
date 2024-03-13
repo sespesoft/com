@@ -1,6 +1,23 @@
 ---
-
+import Image from '~/components/common/Image.astro';
 ---
-<span class="self-center w-56 ml-2 rtl:ml-0 rtl:mr-2 whitespace-nowrap">
-  <img src="../../../src/assets/images/logo.png" alt="logo">
+
+<span class="self-center ml-2 rtl:ml-0 rtl:mr-2 whitespace-nowrap">
+  <div class="box flex items-center">
+    <Image class="box2" src="~/assets/images/logo1.png" alt="Logo1" width="35px" sizes="(max-width: 768px) 100vw, 532px"/>
+    <div>
+      <Image src="~/assets/images/logo2.png" alt="Logo2" width="230px" sizes="(max-width: 768px) 100vw, 532px"/>
+    </div>
+  </div>
 </span>
+
+<style>
+  .box2 {
+    -webkit-transition: .5s linear;
+    transition: .5s linear;
+  }
+  .box:hover .box2 {
+    -webkit-transform: rotate(200deg);
+    transform: rotate(200deg);
+  }
+</style>

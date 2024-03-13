@@ -2,7 +2,8 @@
 import type { Team } from '~/types';
 import WidgetWrapper from '../ui/WidgetWrapper.astro';
 import Headline from '../ui/Headline.astro';
-import '../../assets/styles/teamSlider.css'
+import '~/assets/styles/teamSlider.css'
+import Image from '~/components/common/Image.astro';
 
 const {
   title = await Astro.slots.render('title'),
@@ -34,9 +35,9 @@ const {
                   </svg>
                   <p class="sm:text-sm mb-4 mt-6 leading-[1.75]">{data.content}</p>
                   <span class="author mt-4">
-                    <img src={data.avatar} alt="slider" style="border-radius: 50%;" width="91px" height="91px"/>
+                    <Image src={data.avatar} alt={data.name} style="border-radius: 50%;" width="91px" height="91px" sizes="(max-width: 768px) 100vw, 532px"/>
                     <h3 class="name text-sm">{data.name}</h3>
-                    <p class="text-xs text-[rgb(206,206,208)]">{data.position}</p>
+                    <p class="text-xs text-[rgb(169,169,169)]">{data.position}</p>
                   </span>
                 </div>
                 ))
@@ -51,8 +52,8 @@ const {
                 }        
               </div>
               <div class="buttons">
-                <button id="prev"></button>
-                <button id="next"></button>
+                <span id="prev"></span>
+                <span id="next"></span>
             </div>
           </div>
         </div>

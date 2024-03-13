@@ -2,7 +2,8 @@
 import type { Brands } from '~/types';
 import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import '../../assets/styles/logoSlider.css'
+import Image from '~/components/common/Image.astro';
+import '~/assets/styles/logoSlider.css'
 
 const {
   title = '',
@@ -31,7 +32,7 @@ const {
                     (image) =>
                       image.src && (
                         <div class="swiper-slide-logo py-6 flex h-20 cursor-pointer items-center justify-center lg:px-6 lg:py-6 text-center opacity-50 grayscale filter transition hover:opacity-100 hover:grayscale-0" style="width: 240px; margin-right: 20px;">
-                          <img src={image.src} alt={image.alt || ''} class="inline object-contain" />
+                          <Image src={image.src} alt={image.alt || ''} class="inline object-contain"/>
                         </div>
                       )
                   )
@@ -42,7 +43,7 @@ const {
                     (image) =>
                       image.src && (
                         <div class="swiper-slide-logo py-6 flex h-20 cursor-pointer items-center justify-center lg:px-6 lg:py-6 text-center opacity-50 grayscale filter transition hover:opacity-100 hover:grayscale-0" style="width: 240px; margin-right: 20px;">
-                          <img src={image.src} alt={image.alt || ''} class="inline object-contain" />
+                          <Image src={image.src} alt={image.alt || ''} class="inline object-contain"/>
                         </div>
                       )
                   )
