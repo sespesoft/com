@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
 .img, .group{
     opacity: 0;
     transform: translate3d(0, 100px, 0);
@@ -19,6 +21,12 @@
     animation: fade-in2 forwards;
     animation-timeline: view();
     animation-range: 250px 500px;
+  }
+
+  .logo-name{
+    font-family: "Audiowide", sans-serif;
+    font-weight: 400;
+    font-style: normal;
   }
 
   @keyframes fade-in {

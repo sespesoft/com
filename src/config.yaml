@@ -1,6 +1,6 @@
 site:
   name: Sespesoft
-  site: 'https://astrowind.vercel.app'
+  site: 'https://sespesoft.com/'
   base: '/'
   trailingSlash: false
 
@@ -11,7 +11,7 @@ metadata:
   title:
     default: Sespesoft
     template: '%s — Sespesoft'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+  description: "\U0001F680 Servicios Especializados en Software."
   robots:
     index: true
     follow: true

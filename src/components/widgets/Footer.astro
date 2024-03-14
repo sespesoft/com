@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import { getHomePermalink } from '~/utils/permalinks';
 import Image from '~/components/common/Image.astro';
+import '~/assets/styles/content.css'
 
 interface Link {
   text?: string;
@@ -31,8 +32,13 @@ const {links = [], footNote = '', theme = 'light' } = Astro.props;
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 dark:text-slate-300">
     <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
       <div class="col-span-12 md:col-span-3 lg:col-span-3">
-        <div class="mb-2 lg:w-[70%] w-[50%]">
-          <a class="inline-block" href={getHomePermalink()}><Image src="~/assets/images/logo.png" alt="logo"/></a>
+        <div class="mb-2">
+          <div class="flex items-center">
+          <a class="inline-block lg:w-[35px] w-[27px]" href={getHomePermalink()}><Image src="~/assets/images/logo1.png" alt="logo" sizes="(max-width: 768px) 100vw, 532px"/></a>
+          <div>
+            <p class="logo-name text-primary md:text-xl lg:text-[1.47rem] text-[1.47rem]">SESPESOFT</p>
+          </div>
+        </div>
         </div>
       </div>
       {

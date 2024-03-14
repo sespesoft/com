@@ -31,8 +31,8 @@ const {
                   images.map(
                     (image) =>
                       image.src && (
-                        <div class="swiper-slide-logo py-6 flex h-20 cursor-pointer items-center justify-center lg:px-6 lg:py-6 text-center opacity-50 grayscale filter transition hover:opacity-100 hover:grayscale-0" style="width: 240px; margin-right: 20px;">
-                          <Image src={image.src} alt={image.alt || ''} class="inline object-contain"/>
+                        <div class="swiper-slide-logo py-6 flex h-20 cursor-pointer items-center justify-center lg:px-6 lg:py-6 text-center opacity-50 grayscale filter transition hover:opacity-100 hover:grayscale-0 lg:w-[240px] w-[120px] lg:mr-0 mr-12">
+                          <a href={image.href} target="_blank"><Image src={image.src} alt={image.alt || ''} class="inline object-contain"/></a> 
                         </div>
                       )
                   )
@@ -42,8 +42,8 @@ const {
                   images.map(
                     (image) =>
                       image.src && (
-                        <div class="swiper-slide-logo py-6 flex h-20 cursor-pointer items-center justify-center lg:px-6 lg:py-6 text-center opacity-50 grayscale filter transition hover:opacity-100 hover:grayscale-0" style="width: 240px; margin-right: 20px;">
-                          <Image src={image.src} alt={image.alt || ''} class="inline object-contain"/>
+                        <div class="swiper-slide-logo py-6 flex h-20 cursor-pointer items-center justify-center lg:px-6 lg:py-6 text-center opacity-50 grayscale filter transition hover:opacity-100 hover:grayscale-0 lg:w-[240px] w-[110px] lg:mr-0 mr-12">
+                         <a href={image.href} target="_blank"><Image src={image.src} alt={image.alt || ''} class="inline object-contain"/></a>
                         </div>
                       )
                   )
