@@ -33,7 +33,7 @@ const {
                   <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                     <path d="M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z"></path>
                   </svg>
-                  <p class="sm:text-sm mb-4 mt-6 leading-[1.75]">{data.content}</p>
+                  <p class="sm:text-sm mb-4 lg:mb-0 mt-6 leading-[1.75] aspect-auto md:aspect-[9/2] lg:aspect-[8/2] xl:aspect-[8/2] 2xl:aspect-[5/2]">{data.content}</p>
                   <span class="author mt-4">
                     <Image src={data.avatar} alt={data.name} style="border-radius: 50%;" width="91px" height="91px" sizes="(max-width: 768px) 100vw, 532px"/>
                     <h3 class="name text-sm">{data.name}</h3>
@@ -44,7 +44,7 @@ const {
               }
             </div>
            
-              <div class="pagination absolute -translate-y-10 top-[43rem] md:top-[35rem] swiper-pagination-bullets-dynamic">
+              <div class="pagination absolute -translate-y-10 top-[43rem] sm:top-[35rem] md:top-[35rem] swiper-pagination-bullets-dynamic">
                 {
                   team.map((data) =>(
                   <span class={`swiper-pagination-bullet m-[.3rem] bg-[#000] dark:bg-white opacity-20 rounded-[50%] cursor-pointer ${data?.active && 'active'}`}></span>

@@ -54,7 +54,7 @@
     text-align: center;
     transform: translateX(0%);
     transition: 400ms ease-in-out;
-
+    list-style: none;
 }
 
 .testimonial-content {

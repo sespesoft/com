@@ -17,7 +17,7 @@ prev.onclick = function(){
   reloadSlider();
 }
 
-let refreshInterval = setInterval(()=> {next.click()}, 3000);
+let refreshInterval = setInterval(()=> {next.click()}, 6000);
 
 function reloadSlider(){
   swiperSlider.style.transform = `translateX(-${active * 100}%)`;
@@ -27,7 +27,7 @@ function reloadSlider(){
   indicators[active].classList.add('active');
 
   clearInterval(refreshInterval);
-  refreshInterval = setInterval(()=> {next.click()}, 3000);
+  refreshInterval = setInterval(()=> {next.click()}, 6000);
 }
 
 indicators.forEach((span, key) => {
