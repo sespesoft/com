@@ -10,7 +10,7 @@ export const headerData = {
       href: '#productos',
     },
     {
-      text: 'Sevicios',
+      text: 'Servicios',
       href: '#servicios',
     },
     {
