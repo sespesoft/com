@@ -1,0 +1,12 @@
+---
+import type { Toast } from '~/types';
+
+const { message = '', id = 'toast' } = Astro.props as Toast;
+---
+
+<div
+  id={id}
+  class="fixed bottom-4 right-4 bg-green-600 text-white px-4 py-3 rounded-lg shadow-lg transition-opacity duration-300 opacity-0 pointer-events-none z-50"
+>
+  {message}
+</div>

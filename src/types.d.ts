@@ -206,6 +206,11 @@ export interface Form {
   description?: string;
 }
 
+export interface Toast {
+  message?: string;
+  id?: string;
+}
+
 // WIDGETS
 export interface Hero extends Headline, Widget {
   content?: string;
