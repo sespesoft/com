@@ -99,16 +99,23 @@ const { inputs, textarea, disclaimer, button = 'Enviar Mensaje', description = '
 <script is:inline>
   /* global grecaptcha */
   var form = document.getElementById('my-form');
+  var button = document.getElementById('my-form-button');
+
   async function handleSubmit(event) {
     event.preventDefault();
+
     if (!form.checkValidity()) {
       form.classList.add('was-validated');
-      form.querySelectorAll(':invalid')[0].focus(); 
+      form.querySelectorAll(':invalid')[0].focus();
       return;
     }
+
+    button.disabled = true;
+
     var status = document.getElementById('my-form-status');
     var invalidRecaptcha = document.getElementById('invalid-recaptcha');
     var data = new FormData(event.target);
+
     fetch(event.target.action, {
       method: form.method,
       body: data,
@@ -119,7 +126,7 @@ const { inputs, textarea, disclaimer, button = 'Enviar Mensaje', description = '
       .then((response) => {
         if (response.ok) {
           form.reset();
-          form.classList.remove("was-validated");
+          form.classList.remove('was-validated');
           invalidRecaptcha.innerHTML = '';
           if (typeof grecaptcha !== 'undefined') {
             grecaptcha.reset();
@@ -150,6 +157,9 @@ const { inputs, textarea, disclaimer, button = 'Enviar Mensaje', description = '
       .catch((error) => {
         console.error(error);
         status.innerHTML = 'Oops! There was a problem submitting your form';
+      })
+      .finally(() => {
+        button.disabled = false;
       });
   }
   form.addEventListener('submit', handleSubmit);
