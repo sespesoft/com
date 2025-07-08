@@ -11,7 +11,7 @@ const { inputs, textarea, disclaimer, button = 'Enviar Mensaje', description = '
       inputs.map(
         ({ type = 'text', name, label = '', autocomplete = 'on', placeholder = '' }) =>
           name && (
-            <div class="mb-6">
+            <div class="mb-1">
               {label && (
                 <label for={name} class="block text-sm font-medium mb-2 text-[#1a202ccc] dark:text-white">
                   {label}
@@ -23,10 +23,13 @@ const { inputs, textarea, disclaimer, button = 'Enviar Mensaje', description = '
                 id={name}
                 autocomplete={autocomplete}
                 placeholder={placeholder}
+                pattern={type === 'email' ? '^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$' : undefined}
                 class="py-3 px-4 block w-full text-sm rounded-md border-2 border-solid border-[#ff880033] border-l-[#ff8800a8] bg-[#ff88000d] duration-[.3s] focus:outline-none focus:border-[#ff8800a2] focus:ring-[#ff8800a2] dark:border-gray-700 dark:bg-slate-900"
                 required
               />
-              <div class="empty-feedback text-red-400 text-sm mt-1">Campo requerido.</div>
+              <div class="field-feedback text-red-400 text-xs mt-1" data-type={type}>
+                Campo requerido.
+              </div>
             </div>
           )
       )
@@ -46,7 +49,9 @@ const { inputs, textarea, disclaimer, button = 'Enviar Mensaje', description = '
           class="py-3 px-4 block w-full text-sm rounded-md border-2 border-solid border-[#ff880033] border-l-[#ff8800a8] bg-[#ff88000d] duration-[.3s] focus:outline-none focus:border-[#ff8800a2] focus:ring-[#ff8800a2] dark:border-gray-700 dark:bg-slate-900"
           required
         />
-        <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">Campo requerido.</div>
+        <div class="empty-feedback text-red-400 text-xs mt-1" data-type="text">
+          Campo requerido.
+        </div>
       </div>
     )
   }
@@ -75,9 +80,15 @@ const { inputs, textarea, disclaimer, button = 'Enviar Mensaje', description = '
     button && (
       <div class="mt-10 grid">
         <div class="flex justify-center">
-          <div class="g-recaptcha" data-sitekey="6LdfoTErAAAAAPrzJimGg1rMdhah7aSt1oKQIHT2" />
+          <div
+            class="g-recaptcha hidden"
+            data-sitekey="6LdfoTErAAAAAPrzJimGg1rMdhah7aSt1oKQIHT2"
+            data-size="invisible"
+            data-callback="onRecaptchaSuccess"
+            data-error-callback="onRecaptchaError"
+          />
         </div>
-        <div id="invalid-recaptcha" class="text-red-400 text-sm mt-1 mb-4 text-center" />
+        <div id="invalid-recaptcha" class="text-red-400 text-xs text-center" />
         <Button id="my-form-button" type="submit" variant="primary">
           {button}
         </Button>
@@ -98,27 +109,20 @@ const { inputs, textarea, disclaimer, button = 'Enviar Mensaje', description = '
 
 <script is:inline>
   /* global grecaptcha */
-  var form = document.getElementById('my-form');
-  var button = document.getElementById('my-form-button');
+  let form = document.getElementById('my-form');
+  let button = document.getElementById('my-form-button');
+  let status = document.getElementById('my-form-status');
+  let invalidRecaptcha = document.getElementById('invalid-recaptcha');
+  let formData = null;
 
-  async function handleSubmit(event) {
-    event.preventDefault();
+  window.onRecaptchaSuccess = function (token) {
+    if (!formData) return;
+    formData.delete('g-recaptcha-response');
+    formData.append('g-recaptcha-response', token);
 
-    if (!form.checkValidity()) {
-      form.classList.add('was-validated');
-      form.querySelectorAll(':invalid')[0].focus();
-      return;
-    }
-
-    button.disabled = true;
-
-    var status = document.getElementById('my-form-status');
-    var invalidRecaptcha = document.getElementById('invalid-recaptcha');
-    var data = new FormData(event.target);
-
-    fetch(event.target.action, {
+    fetch(form.action, {
       method: form.method,
-      body: data,
+      body: formData,
       headers: {
         Accept: 'application/json',
       },
@@ -128,9 +132,7 @@ const { inputs, textarea, disclaimer, button = 'Enviar Mensaje', description = '
           form.reset();
           form.classList.remove('was-validated');
           invalidRecaptcha.innerHTML = '';
-          if (typeof grecaptcha !== 'undefined') {
-            grecaptcha.reset();
-          }
+          grecaptcha.reset();
 
           const toast = document.getElementById('form-success-toast');
           if (toast) {
@@ -146,7 +148,8 @@ const { inputs, textarea, disclaimer, button = 'Enviar Mensaje', description = '
             if (Object.hasOwn(data, 'errors')) {
               status.innerHTML = data['errors'].map((error) => error['message']).join(', ');
             } else {
-              invalidRecaptcha.innerHTML = data.error;
+              invalidRecaptcha.innerHTML = data.error || 'Error con reCAPTCHA.';
+              grecaptcha.reset();
               setTimeout(() => {
                 invalidRecaptcha.innerHTML = '';
               }, 5000);
@@ -156,27 +159,76 @@ const { inputs, textarea, disclaimer, button = 'Enviar Mensaje', description = '
       })
       .catch((error) => {
         console.error(error);
-        status.innerHTML = 'Oops! There was a problem submitting your form';
+        status.innerHTML = 'Oops! Hubo un problema al enviar el formulario.';
       })
       .finally(() => {
         button.disabled = false;
+        formData = null;
       });
+  };
+
+  window.onRecaptchaError = function () {
+    invalidRecaptcha.innerText = 'No se pudo validar el reCAPTCHA. Intenta nuevamente.';
+    button.disabled = false;
+  };
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.classList.add('was-validated');
+      const firstInvalid = form.querySelector(':invalid');
+      if (firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    button.disabled = true;
+    formData = new FormData(form);
+    grecaptcha.execute();
   }
+
   form.addEventListener('submit', handleSubmit);
 </script>
 
 <style>
-  .invalid-feedback,
   .empty-feedback {
-    display: none;
+    visibility: hidden;
+  }
+
+  .field-feedback {
+    min-height: 1rem;
+    visibility: hidden;
+  }
+
+  .was-validated input:placeholder-shown:invalid ~ .field-feedback {
+    visibility: visible;
+    content: 'Campo requerido.';
+  }
+
+  .was-validated input:not(:placeholder-shown):invalid[data-type='email'] ~ .field-feedback::after {
+    content: 'Ingresa un correo válido.';
+    visibility: visible;
+  }
+
+  .was-validated input:not(:placeholder-shown):invalid ~ .field-feedback::after {
+    content: 'Ingresa un correo válido.';
+  }
+
+  .was-validated input:invalid ~ .field-feedback {
+    visibility: hidden;
+    position: relative;
+  }
+
+  .was-validated input:invalid ~ .field-feedback::after {
+    visibility: visible;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
   }
 
   .was-validated :placeholder-shown:invalid ~ .empty-feedback {
-    display: block;
-  }
-
-  .was-validated :not(:placeholder-shown):invalid ~ .invalid-feedback {
-    display: block;
+    visibility: visible;
   }
 
   .is-invalid,
