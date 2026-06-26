@@ -2,7 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import { getHomePermalink } from '~/utils/permalinks';
 import Image from '~/components/common/Image.astro';
-import '~/assets/styles/content.css'
+import '~/assets/styles/content.css';
 
 interface Link {
   text?: string;
@@ -24,7 +24,7 @@ export interface Props {
   theme?: string;
 }
 
-const {links = [], footNote = '', theme = 'light' } = Astro.props;
+const { links = [], footNote = '', theme = 'light' } = Astro.props;
 ---
 
 <footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-200 dark:border-slate-800 not-prose']}>
@@ -34,11 +34,13 @@ const {links = [], footNote = '', theme = 'light' } = Astro.props;
       <div class="col-span-12 md:col-span-3 lg:col-span-3">
         <div class="mb-2">
           <div class="flex items-center">
-          <a class="inline-block lg:w-[35px] w-[27px] mr-1" href={getHomePermalink()}><Image src="~/assets/images/logo1.png" alt="logo" sizes="(max-width: 768px) 100vw, 532px"/></a>
-          <div>
-            <p class="logo-name text-primary md:text-xl lg:text-[1.47rem] text-[1.47rem]">SESPESOFT</p>
+            <a class="inline-block lg:w-8.75 w-6.75 mr-1" href={getHomePermalink()}
+              ><Image src="~/assets/images/logo1.png" alt="logo" sizes="(max-width: 768px) 100vw, 532px" /></a
+            >
+            <div>
+              <p class="logo-name text-primary md:text-xl lg:text-[1.47rem] text-[1.47rem]">SESPESOFT</p>
+            </div>
           </div>
-        </div>
         </div>
       </div>
       {
@@ -47,9 +49,8 @@ const {links = [], footNote = '', theme = 'light' } = Astro.props;
             <div class="dark:text-gray-300 font-bold mb-2">{title}</div>
             {links && Array.isArray(links) && links.length > 0 && (
               <ul class="text-sm">
-                {links.map(({ text, href,ariaLabel }) => (
+                {links.map(({ text, href, ariaLabel }) => (
                   <li class="mb-4">
-                    
                     <a
                       class="text-muted hover:text-primary hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
                       href={href}
@@ -60,55 +61,47 @@ const {links = [], footNote = '', theme = 'light' } = Astro.props;
                   </li>
                 ))}
               </ul>
-              
             )}
-            
             <div class="md:flex md:items-center md:justify-between">
-            {socialLinks?.length ? (
-              <ul class="flex mb-4 md:order-1 md:mb-0 rtl:ml-0 rtl:-mr-2 rtl:md:ml-0 rtl:md:mr-4">
-                {socialLinks.map(({ ariaLabel, href, text, icon }) => (
-                  <li class="mr-2 inline-block">
-                    <a
-                      class="text-muted dark:text-gray-400 hover:border-primary hover:text-primary focus:outline-none dark:focus:ring-gray-700 rounded-[9999px] border border-[rgb(222,226,230)] text-sm p-2.5 inline-flex items-center"
-                      aria-label={ariaLabel}
-                      href={href}
-                      target="_blank"
-                    >
-                      {icon && <Icon name={icon} class="w-5 h-5" />}
-                      <Fragment set:html={text} />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              ''
-            )}
-        </div>
-      </div>
+              {socialLinks?.length ? (
+                <ul class="flex mb-4 md:order-1 md:mb-0 rtl:ml-0 rtl:-mr-2 rtl:md:ml-0 rtl:md:mr-4">
+                  {socialLinks.map(({ ariaLabel, href, text, icon }) => (
+                    <li class="mr-2 inline-block">
+                      <a
+                        class="text-muted dark:text-gray-400 hover:border-[#ff8700] hover:text-primary focus:outline-none dark:focus:ring-gray-700 rounded-[9999px] border border-[#dee2e6] text-sm p-2.5 inline-flex items-center"
+                        aria-label={ariaLabel}
+                        href={href}
+                        target="_blank"
+                      >
+                        {icon && <Icon name={icon} class="w-5 h-5" />}
+                        <Fragment set:html={text} />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                ''
+              )}
+            </div>
+          </div>
         ))
       }
-
-<div class="col-span-12 md:col-span-3 lg:col-span-2">
-  <div class="dark:text-gray-300 font-bold mb-2">Location & Contact</div>
-
-    <ul class="text-sm">
-    
-        <li class="mb-4">
-          <p class="text-muted dark:text-gray-400">San Jose de Cúcuta - Norte de Santander</p>
-        </li>
-        <li class="mb-4">
-          <p class="text-muted dark:text-gray-400">Calle 5 #0-14 Barrio LLeras</p>
-        </li>
-        <li class="mb-4">
-          <p class="text-muted dark:text-gray-400">Cel. 3174309332</p>
-        </li>
-
-    </ul>
-  </div>
-
-
+      <div class="col-span-12 md:col-span-3 lg:col-span-2">
+        <div class="dark:text-gray-300 font-bold mb-2">Location & Contact</div>
+        <ul class="text-sm">
+          <li class="mb-4">
+            <p class="text-muted dark:text-gray-400">San Jose de Cúcuta - Norte de Santander</p>
+          </li>
+          <li class="mb-4">
+            <p class="text-muted dark:text-gray-400">Calle 5 #0-14 Barrio LLeras</p>
+          </li>
+          <li class="mb-4">
+            <p class="text-muted dark:text-gray-400">Cel. 3174309332</p>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="flex items-center border-t border-[rgb(222 226 230] justify-center py-6 md:py-8">
+    <div class="flex items-center border-t border-gray-200 dark:border-slate-800 justify-center py-6 md:py-8">
       <div class="text-sm mr-4 text-muted dark:text-slate-400">
         <Fragment set:html={footNote} />
       </div>

@@ -24,7 +24,7 @@ const { inputs, textarea, disclaimer, button = 'Enviar Mensaje', description = '
                 autocomplete={autocomplete}
                 placeholder={placeholder}
                 pattern={type === 'email' ? '^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$' : undefined}
-                class="py-3 px-4 block w-full text-sm rounded-md border-2 border-solid border-[#ff880033] border-l-[#ff8800a8] bg-[#ff88000d] duration-[.3s] focus:outline-none focus:border-[#ff8800a2] focus:ring-[#ff8800a2] dark:border-gray-700 dark:bg-slate-900"
+                class="py-3 px-4 block w-full text-sm rounded-md border-2 border-solid border-[#ff880033] border-l-[#ff8800a8] bg-[#ff88000d] duration-300 focus:outline-none focus:border-[#ff8800a2] focus:ring-[#ff8800a2] dark:border-gray-700 dark:bg-slate-900"
                 required
               />
               <div class="field-feedback text-red-400 text-xs mt-1" data-type={type}>
@@ -46,7 +46,7 @@ const { inputs, textarea, disclaimer, button = 'Enviar Mensaje', description = '
           name="message"
           rows={textarea.rows ? textarea.rows : 4}
           placeholder={textarea.placeholder}
-          class="py-3 px-4 block w-full text-sm rounded-md border-2 border-solid border-[#ff880033] border-l-[#ff8800a8] bg-[#ff88000d] duration-[.3s] focus:outline-none focus:border-[#ff8800a2] focus:ring-[#ff8800a2] dark:border-gray-700 dark:bg-slate-900"
+          class="py-3 px-4 block w-full text-sm rounded-md border-2 border-solid border-[#ff880033] border-l-[#ff8800a8] bg-[#ff88000d] duration-300 focus:outline-hidden focus:border-[#ff8800a2] focus:ring-[#ff8800a2] dark:border-gray-700 dark:bg-slate-900"
           required
         />
         <div class="empty-feedback text-red-400 text-xs mt-1" data-type="text">

@@ -49,9 +49,9 @@ export const footerData = {
       ],
       socialLinks: [
       ],
-    }, 
+    },
   ],
   footNote: `
-   SESPESOFT S.A.S. ©2024
-  `,
+ SESPESOFT S.A.S. ©${new Date().getFullYear()}
+`,
 };

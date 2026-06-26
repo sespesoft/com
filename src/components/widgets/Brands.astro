@@ -3,7 +3,7 @@ import type { Brands } from '~/types';
 import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Image from '~/components/common/Image.astro';
-import '~/assets/styles/logoSlider.css'
+import '~/assets/styles/logoSlider.css';
 
 const {
   title = '',
@@ -23,16 +23,18 @@ const {
   <div class="overflow-hidden">
     <div class="ml-auto mr-auto box-border pl-4 pr-4">
       <div class="flex-row flex flex-wrap">
-        <div class="border-y border-[rgb(222,226,230)] py-2">
-          <div class="swiper-logo ml-auto mr-auto relative overflow-hidden padding-0 p-0 z-[1] block">
-            <div class="swiper-wrapper-logo relative w-[100%] h-[100%] z-[1] flex box-content transform">
+        <div class="border-y border-gray-200 dark:border-slate-800 py-2">
+          <div class="swiper-logo ml-auto mr-auto relative overflow-hidden padding-0 p-0 z-1 block">
+            <div class="swiper-wrapper-logo relative w-full h-full z-1 flex box-content transform">
               {
                 images &&
                   images.map(
                     (image) =>
                       image.src && (
-                        <div class="swiper-slide-logo py-6 flex h-20 cursor-pointer items-center justify-center lg:px-6 lg:py-6 text-center opacity-50 grayscale filter transition hover:opacity-100 hover:grayscale-0 lg:w-[240px] w-[120px] lg:mr-0 mr-12">
-                          <a href={image.href} target="_blank"><Image src={image.src} alt={image.alt || ''} class="inline object-contain"/></a> 
+                        <div class="swiper-slide-logo py-6 flex h-20 cursor-pointer items-center justify-center lg:px-6 lg:py-6 text-center opacity-50 grayscale filter transition hover:opacity-100 hover:grayscale-0 lg:w-60 w-30 lg:mr-0 mr-12">
+                          <a href={image.href} target="_blank">
+                            <Image src={image.src} alt={image.alt || ''} class="inline object-contain" />
+                          </a>
                         </div>
                       )
                   )
@@ -42,8 +44,10 @@ const {
                   images.map(
                     (image) =>
                       image.src && (
-                        <div class="swiper-slide-logo py-6 flex h-20 cursor-pointer items-center justify-center lg:px-6 lg:py-6 text-center opacity-50 grayscale filter transition hover:opacity-100 hover:grayscale-0 lg:w-[240px] w-[110px] lg:mr-0 mr-12">
-                         <a href={image.href} target="_blank"><Image src={image.src} alt={image.alt || ''} class="inline object-contain"/></a>
+                        <div class="swiper-slide-logo py-6 flex h-20 cursor-pointer items-center justify-center lg:px-6 lg:py-6 text-center opacity-50 grayscale filter transition hover:opacity-100 hover:grayscale-0 lg:w-60 w-27.5 lg:mr-0 mr-12">
+                          <a href={image.href} target="_blank">
+                            <Image src={image.src} alt={image.alt || ''} class="inline object-contain" />
+                          </a>
                         </div>
                       )
                   )
@@ -55,6 +59,3 @@ const {
     </div>
   </div>
 </WidgetWrapper>
-
-
-

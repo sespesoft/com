@@ -1,13 +1,11 @@
 ---
 import merge from 'lodash.merge';
-import { AstroSeo } from '@astrolib/seo';
-
-import type { Props as AstroSeoProps } from '@astrolib/seo';
+import { SEO } from 'astro-seo';
+import type { Props as SEOProps } from 'astro-seo';
 
 import { SITE, METADATA, I18N } from '~/utils/config';
 import type { MetaData } from '~/types';
 import { getCanonical } from '~/utils/permalinks';
-
 import { adaptOpenGraphImages } from '~/utils/images';
 
 export interface Props extends MetaData {
@@ -24,18 +22,18 @@ const {
   twitter = {},
 } = Astro.props;
 
-const seoProps: AstroSeoProps = merge(
+const merged = merge(
   {
     title: '',
     titleTemplate: '%s',
     canonical: canonical,
     noindex: true,
     nofollow: true,
-    description: undefined,
+    description: undefined as string | undefined,
     openGraph: {
       url: canonical,
       site_name: SITE?.name,
-      images: [],
+      images: [] as Array<{ url: string; width?: number; height?: number }>,
       locale: I18N?.language || 'en',
       type: 'website',
     },
@@ -63,6 +61,41 @@ const seoProps: AstroSeoProps = merge(
     twitter: twitter,
   }
 );
+
+const adaptedOpenGraph = await adaptOpenGraphImages(merged.openGraph, Astro.site);
+const firstImage = adaptedOpenGraph?.images?.[0];
+
+const seoProps: SEOProps = {
+  title: merged.title,
+  titleTemplate: merged.titleTemplate,
+  canonical: merged.canonical,
+  noindex: merged.noindex,
+  nofollow: merged.nofollow,
+  description: merged.description,
+  openGraph: firstImage
+    ? {
+        basic: {
+          title: merged.title || '',
+          type: adaptedOpenGraph?.type || 'website',
+          image: firstImage.url,
+          url: adaptedOpenGraph?.url,
+        },
+        optional: {
+          siteName: adaptedOpenGraph?.site_name,
+          locale: adaptedOpenGraph?.locale,
+          description: merged.description,
+        },
+        image: {
+          url: firstImage.url,
+          width: firstImage.width,
+          height: firstImage.height,
+        },
+      }
+    : undefined,
+  twitter: {
+    card: merged.twitter?.cardType as 'summary' | 'summary_large_image' | undefined,
+  },
+};
 ---
 
-<AstroSeo {...{ ...seoProps, openGraph: await adaptOpenGraphImages(seoProps?.openGraph, Astro.site) }} />
+<SEO {...seoProps} />
